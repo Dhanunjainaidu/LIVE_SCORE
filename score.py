@@ -21,7 +21,7 @@ def ascii_art():
 def get_current_matches():
     
     page = requests.get('http://static.cricinfo.com/rss/livescores.xml')  
-    soup = BeautifulSoup(page.text, 'xml.parser')  
+    soup = BeautifulSoup(page.text, 'xml')  
     matches = soup.find_all('description')  
     live_matches = [s.get_text() for s in matches if
                     '*' in s.get_text()]  
@@ -31,7 +31,7 @@ def get_current_matches():
 def fetch_score(matchNum):
     
     page = requests.get('http://static.cricinfo.com/rss/livescores.xml')
-    soup = BeautifulSoup(page.text, 'xml.parser')
+    soup = BeautifulSoup(page.text, 'xml')
     matches = soup.find_all('description')
     live_matches = [s.get_text() for s in matches if '*' in s.get_text()]
     return live_matches[matchNum]
@@ -41,7 +41,7 @@ def notify(score,support):
     
     toaster = ToastNotifier()
     toaster.show_toast(score,
-                       f"Go {support},Go!",
+                       f"Come on!!! {support},Go!",
                        duration=10)
 
 
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     print()
     matchNum = int(input('Pick the match number [0,1,2...] => '))
-    support=input("enter the team you are supporting")
+    support=input("enter the team you are supporting:-")
 
     
     while True:
