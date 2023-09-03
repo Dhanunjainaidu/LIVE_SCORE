@@ -59,8 +59,15 @@ if __name__ == "__main__":
               )
 
     print()
-    matchNum = int(input('Pick the match number [0,1,2...] => '))
-    support=input("enter the team you are supporting:-")
+try:
+    matchNum = int(input('Pick the match number [0, 1, 2, ...] => '))
+    if matchNum < 0 or matchNum >= len(matches):
+        print("Invalid match number. Please select a valid match number.")
+    else:
+        support = input("Enter the team you are supporting: ")
+       
+except ValueError:
+    print("Invalid input. Please enter a valid numeric match number.")
 
     
     while True:
